@@ -29,7 +29,7 @@ async def user(genero: str):
     """
     try:
         # Cargar el DataFrame desde el archivo CSV
-        df_genero = pd.read_csv(r"C:\Users\ayrc2\Documentos\Proyecto Individual DPT03\PI_ML_OPS_Steam_Games_V2\PI_ML_OPS_Steam_Games_V2\Data\PlayTimeGenre.csv")
+        df_genero = pd.read_csv("./Data/PlayTimeGenre.csv")
 
         # Filtrar el DataFrame para obtener solo las filas del género especificado
         df_genero = df_genero[df_genero['genres'] == genero]
@@ -258,7 +258,7 @@ async def recomendacion_juego(id: int):
     
         -dict Un diccionario con 5 juegos similares 
     """
-    modelo_render = pd.read_csv(r"C:\Users\ayrc2\Documentos\Proyecto Individual DPT03\PI_ML_OPS_Steam_Games_V2\PI_ML_OPS_Steam_Games_V2\Data\modelo_render.csv")
+    modelo_render = pd.read_csv("./Data/modelo_render.csv")
     
     game = modelo_render[modelo_render['id'] == id]
 
