@@ -58,3 +58,48 @@ async def user(genero: str):
             status_code=500,
             content={'error': f"Error interno: {str(e)}"}
         )
+    
+    
+#UserForGenre
+@app.get("/UserForGenre/{genero :str}")
+async def user(genero: str):
+    """
+    Obtiene el usuario con el mayor tiempo de juego para un género dado.
+
+    Parámetros:
+    - genero: El género para el cual se solicita la información del usuario.
+
+    Devuelve:
+    - Respuesta JSON que contiene al usuario con mayor tiempo de juego para el género especificado y su tiempo de juego por año.
+    """
+    try:
+        # Leer el archivo CSV que contiene la información del usuario para el género dado
+        df_usuario_por_genero = pd.read_csv(r"C:\Users\ayrc2\Documentos\Proyecto Individual DPT03\PI_ML_OPS_Steam_Games_V2\PI_ML_OPS_Steam_Games_V2\Data\UserForGenre.csv")
+
+        # Filtrar datos para el género especificado
+        datos_genero = df_usuario_por_genero[df_usuario_por_genero['genres'] == genero]
+
+        if not datos_genero.empty:
+            # Crear una lista de diccionarios para el tiempo de juego por año
+            tiempo_juego_por_anio = [{'Año': anio, 'Tiempo de Juego': tiempo_juego} for anio, tiempo_juego in datos_genero[['Año_estreno', 'playtime_forever']].values]
+
+            # Crear el diccionario de salida
+            resultado = {
+                'Usuario con mayor tiempo de juego para el género ' + genero: datos_genero.iloc[0]['user_id'],
+                'Horas jugadas': tiempo_juego_por_anio
+            }
+
+            return resultado
+        else:
+            # Devolver una respuesta de error si no se encuentra información para el género
+            return JSONResponse(
+                status_code=404,
+                content={'error': f"No se encontró información del género '{genero}'"}
+            )
+
+    except Exception as e:
+        # Manejar cualquier excepción y devolver una respuesta 500
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error Interno del Servidor: {str(e)}"
+        )
