@@ -10,7 +10,7 @@ app = FastAPI(title='API Steam Games')
 #Mensaje de bienvenida
 @app.get("/")
 async def root():
-    return {"Mensaje": "Bienvenidos a mi proyecto"}
+    return {"Mensaje": "Bienvenidos a mi proyecto Individual"}
 
 
 #PlayTimeGenre
