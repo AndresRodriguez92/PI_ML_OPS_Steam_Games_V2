@@ -103,3 +103,51 @@ async def user(genero: str):
             status_code=500,
             detail=f"Error Interno del Servidor: {str(e)}"
         )
+    
+
+#UsersRecommend
+@app.get("/UsersRecommend/{año :int}")
+async def user(año: int):
+    """
+    Obtiene los 3 juegos más recomendados por usuarios para el año ingresado.
+
+    Parámetros:
+    - año (int): El año para el cual se desean obtener las recomendaciones.
+
+    Returns:
+    - dict: Un diccionario que contiene el top 3 de juegos recomendados en el formato:
+        {"Puesto 1": "Nombre del Juego1", "Puesto 2": "Nombre del Juego2", "Puesto 3": "Nombre del Juego3"}
+        En caso de no haber recomendaciones para el año especificado, devuelve una respuesta de error.
+    """
+    try:
+        # Leer el archivo CSV que contiene la información de las recomendaciones para el año dado
+        recomendaciones_anio = pd.read_csv(r"C:\Users\ayrc2\Documentos\Proyecto Individual DPT03\PI_ML_OPS_Steam_Games_V2\PI_ML_OPS_Steam_Games_V2\Data\UsersRecommend.csv")
+
+        # Verificar si hay revisiones para el año dado
+        if not recomendaciones_anio.empty:
+            # Filtrar las revisiones para el año dado y recomendaciones positivas/neutrales
+            recomendaciones = recomendaciones_anio[recomendaciones_anio['posted_year'] == int(año)]
+            
+            # Ordenar en orden descendente por la cantidad de recomendaciones
+            recomendaciones = recomendaciones.sort_values('recommend', ascending=False)
+            
+            # Crear una única línea de resultado
+            resultado = {
+                "Puesto 1": recomendaciones.iloc[0]['app_name'],
+                "Puesto 2": recomendaciones.iloc[1]['app_name'],
+                "Puesto 3": recomendaciones.iloc[2]['app_name']
+            }
+            
+            return resultado
+        else:
+            # Devolver una respuesta de error si no se encuentra información para el año
+            return JSONResponse(
+                status_code=404,
+                content={'error': f"No hay recomendaciones para el año {año}"}
+            )
+    except Exception as e:
+        # Manejar cualquier excepción y devolver una respuesta 500
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error Interno del Servidor: {str(e)}"
+        )
