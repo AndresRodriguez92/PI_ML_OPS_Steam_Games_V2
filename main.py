@@ -36,7 +36,7 @@ async def user(genero: str):
 
         if not df_genero.empty:
             # Encontrar el año con la máxima cantidad de horas jugadas
-            anio_mas_jugado = df_genero.loc[df_genero['playtime_forever'].idxmax()]['release_year']
+            anio_mas_jugado = df_genero.loc[df_genero['playtime_forever'].idxmax()]['Año_estreno']
             
             # Crear y devolver una respuesta exitosa
             return JSONResponse(
