@@ -40,7 +40,7 @@ Ejemplo de retorno: [{"Puesto 1" : X}, {"Puesto 2" : Y},{"Puesto 3" : Z}].
 Ejemplo de retorno: {'Valve' : [Negative = 182, Neutral = 120, Positive = 278]}
 
 **4.- API**
-Se implementó una API utilizando FastApi para exponer las funciones de consulta como endpoints y tambien se usó Render. El deploy de la API se encuentra en: https://api-steam-games-me3w.onrender.com/docs. El código para la API se encuentra en el archivo main.py.
+Se implementó una API utilizando FastApi para exponer las funciones de consulta como endpoints y tambien se usó Render. El deploy de la API se encuentra en: (https://pi-ml-ops-steam-games-v2.onrender.com). El código para la API se encuentra en el archivo main.py.
 
 **5.-EDA**
 Durante este proceso, se exploraron y examinaron los conjuntos de datos.
