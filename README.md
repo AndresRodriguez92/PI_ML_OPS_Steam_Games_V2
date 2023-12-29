@@ -24,7 +24,7 @@ Se ha creado la columna 'sentiment_analysis' aplicando análisis de sentimiento 
 
 **3.- Funciones de consultas**
 
-**`def PlayTimeGenre( genero : str )`**: Debe devolver año con más horas jugadas para dicho género.Notebook
+**`def PlayTimeGenre( genero : str )`**: Debe devolver año con más horas jugadas para dicho género.
 Ejemplo de retorno: {"Año de lanzamiento con más horas jugadas para Género X" : 2013}.
 
 **`def UserForGenre( genero : str )`**: Debe devolver el usuario que acumula más horas jugadas para el género dado y una lista de la acumulación de horas jugadas por año.
@@ -48,9 +48,9 @@ Durante este proceso, se exploraron y examinaron los conjuntos de datos.
 **6.-. Sistema de recomendación**
 Crear el sistema de recomendación con dos enfoques distintos:
 
-Sistema de Recomendación ítem-ítem: Modelo que recomienda juegos similares en función de un juego dado. Se utilizó la similitud del coseno como métrica principal para establecer la relación entre juegos.Notebook
+Sistema de Recomendación ítem-ítem: Modelo que recomienda juegos similares en función de un juego dado. Se utilizó la similitud del coseno como métrica principal para establecer la relación entre juegos.
 
-Sistema de Recomendación usuario-ítem: Modelo que recomienda juegos a un usuario basándose en las preferencias de otros usuarios similares.Notebook
+Sistema de Recomendación usuario-ítem: Modelo que recomienda juegos a un usuario basándose en las preferencias de otros usuarios similares.
 
 **7.- Video Explicativo**
-Video
+(https://youtu.be/aARLnBf7Zrc)
